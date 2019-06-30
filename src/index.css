@@ -1,13 +1,133 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+#keysContainer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 525px;
+}
+
+#display {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+ol {
+  display: flex;
+  border: 5px solid lightcoral;
+  justify-content: center;
+}
+
+li {
+  position: absolute;
+  list-style: none;
+}
+
+.drum-pad,
+.drum-pad2 {
+  position: absolute;
+
+  border: 1px solid black;
+}
+
+#song {
+  position: absolute;
+  left: 50%;
+  top: 275px;
+  transform: translateX(-50%);
+}
+
+#songList {
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 385px;
+  width: 750px;
+  transform: translate(-50%, -50%);
+  border: 2px pink solid;
+}
+
+#songList p {
+  text-align: center;
+  margin: 5px;
+  border: 1px pink solid;
+  width: 300px;
+}
+
+#buttonKey {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 15px;
+}
+
+.white {
+  background: white;
+  width: 75px;
+  height: 200px;
+}
+
+.black {
+  background: black;
+  color: white;
+  width: 45px;
+  height: 125px;
+  z-index: 1;
+}
+
+.played {
+  background: gray;
+}
+
+#keysContainer li:nth-child(1) {
+  left: 0;
+}
+
+#keysContainer li:nth-child(2) {
+  left: 52.5px;
+}
+
+#keysContainer li:nth-child(3) {
+  left: 75px;
+}
+
+#keysContainer li:nth-child(4) {
+  left: 127.5px;
+}
+
+#keysContainer li:nth-child(5) {
+  left: 150px;
+}
+
+#keysContainer li:nth-child(6) {
+  left: 225px;
+}
+
+#keysContainer li:nth-child(7) {
+  left: 277.5px;
+}
+
+#keysContainer li:nth-child(8) {
+  left: 300px;
+}
+
+#keysContainer li:nth-child(9) {
+  left: 352.5px;
+}
+
+#keysContainer li:nth-child(10) {
+  left: 375px;
+}
+
+#keysContainer li:nth-child(11) {
+  left: 427.5px;
+}
+
+#keysContainer li:nth-child(12) {
+  left: 450px;
 }
