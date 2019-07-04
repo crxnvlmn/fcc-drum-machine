@@ -71,8 +71,10 @@ const App = () => {
   return (
     <div id="drum-machine">
       <h1 id="display">{pressed}</h1>
-      <div id="keysContainer">
-        <Keys thisKey={key} lastNote={lastNotePlayed} />
+      <div id="piano-body">
+        <div id="keysContainer">
+          <Keys thisKey={key} lastNote={lastNotePlayed} />
+        </div>
       </div>
 
       <h1 id="song">SONG</h1>
@@ -149,101 +151,23 @@ const Key = ({ lastNote, keyer, index }) => {
 
     lastNote(keyer.name);
     setPushed('played');
-    setTimeout(() => {
-      setPushed('');
-    }, 75);
+    setTimeout(() => setPushed(''), 75);
   };
-
   const color = keyer.name.length === 6 ? 'white' : 'black';
-  let theShow;
-
-  (() => {
-    if (index < 9) {
-      theShow = (
-        <div
-          className={`drum-pad ${color} ${pushed}`}
-          id={keyer.name}
-          onClick={handleKeyClick}
-        >
-          <p id="buttonKey">{String.fromCharCode(keyer.keyCode)}</p>
-          <audio
-            src={keyer.soundURL}
-            className="clip"
-            id={String.fromCharCode(keyer.keyCode)}
-          />
-        </div>
-      );
-    } else {
-      theShow = (
-        <div
-          className={`drum-pad2 ${color} ${pushed}`}
-          id={keyer.name}
-          onClick={handleKeyClick}
-        >
-          <p id="buttonKey">{String.fromCharCode(keyer.keyCode)}</p>
-          <audio
-            src={keyer.soundURL}
-            className="clip2"
-            id={String.fromCharCode(keyer.keyCode)}
-          />
-        </div>
-      );
-    }
-  })();
-
-  return <>{theShow}</>;
-};
-
-const ExtraKeys = () => {
-  const [key, setKey] = React.useState({
-    a: {
-      name: 'Note C',
-      keyCode: 81, // Q
-      soundURL: 'https://www.myinstants.com/media/sounds/notea.mp3'
-    },
-    as: {
-      name: 'Note C#',
-      keyCode: 87, // W
-      soundURL: 'https://www.myinstants.com/media/sounds/noteas.mp3'
-    },
-    d: {
-      name: 'Note D',
-      keyCode: 69, // E
-      soundURL: 'https://www.myinstants.com/media/sounds/noteb.mp3'
-    }
-  });
-
-  const handleKeyPress = () => null;
-
-  React.useEffect(
-    () => document.addEventListener('keydown', handleKeyPress),
-    []
-  );
-
   return (
-    <>
-      <div className="bonusContainer">
-        <ol id="xtraol">
-          <li>
-            <div id="v" className="white">
-              <p className="xtra">V</p>
-            </div>
-          </li>
-          <li>
-            <div id="b" className="black">
-              <p className="xtra">B</p>
-            </div>
-          </li>
-          <li>
-            <div id="n" className="white">
-              <p className="xtra">N</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </>
+    <div
+      className={`${index < 9 ? 'drum-pad' : 'drum-pad2'} ${color} ${pushed}`}
+      id={keyer.name}
+      onClick={handleKeyClick}
+    >
+      <p id="buttonKey">{String.fromCharCode(keyer.keyCode)}</p>
+      <audio
+        src={keyer.soundURL}
+        className={`${index < 9 ? 'clip' : 'clip2'}`}
+        id={String.fromCharCode(keyer.keyCode)}
+      />
+    </div>
   );
 };
 
 ReactDOM.render(<App />, document.getElementById('root'));
-// ReactDOM.render(<ExtraKeys />, document.getElementById('extension'));

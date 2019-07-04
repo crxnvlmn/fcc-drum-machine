@@ -6,9 +6,9 @@
 
 #keysContainer {
   position: absolute;
+  width: 525px;
   left: 50%;
   transform: translateX(-50%);
-  width: 525px;
 }
 
 #display {
