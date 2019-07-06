@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-const App = () => {
+const PianoMachine = () => {
   const [key, setKey] = React.useState({
     c: {
       name: 'Note C',
@@ -66,19 +66,24 @@ const App = () => {
     }
   });
   const [pressed, setPressed] = React.useState('Note _');
-  const lastNotePlayed = note => setPressed(note);
+  const [effect, setEffect] = React.useState('');
+  const lastNotePlayed = note => {
+    setPressed(note);
+    setEffect('glow');
+    setTimeout(() => setEffect(''), 100);
+  };
 
   return (
     <div id="drum-machine">
-      <h1 id="display">{pressed}</h1>
-      <div id="piano-body">
-        <div id="keysContainer">
-          <Keys thisKey={key} lastNote={lastNotePlayed} />
-        </div>
+      <h1 id="title">🎹 &lt;PIANO MACHINE /&gt; 🎹</h1>
+      <h1 id="display" className={effect}>
+        {pressed}
+      </h1>
+      <div id="keysContainer">
+        <Keys thisKey={key} lastNote={lastNotePlayed} />
       </div>
 
       <h1 id="song">SONG</h1>
-
       <div id="songList">
         <p>
           Mary had a little lamb
@@ -148,7 +153,6 @@ const Key = ({ lastNote, keyer, index }) => {
     const sound = document.getElementById(String.fromCharCode(keyer.keyCode));
     sound.currentTime = 0;
     sound.play();
-
     lastNote(keyer.name);
     setPushed('played');
     setTimeout(() => setPushed(''), 75);
@@ -170,4 +174,4 @@ const Key = ({ lastNote, keyer, index }) => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<PianoMachine />, document.getElementById('piano-machine'));
